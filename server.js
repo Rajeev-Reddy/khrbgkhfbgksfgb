@@ -6,7 +6,9 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Connect to your MongoDB with your existing database name
-mongoose.connect('mongodb://localhost:27017/project', {
+const mongoURI = process.env.MONGODB_URI;
+
+mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
