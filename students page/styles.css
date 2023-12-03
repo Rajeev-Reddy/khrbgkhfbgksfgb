@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #d9ede2;
+    margin: 0;
+    padding: 0;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 10px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    justify-content: center; 
+}
+
+.grid-item {
+    text-align: center;
+    background-color: #77c5d2;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    /*transition: filter 0.5s ease;*/
+    box-shadow: #3a4654 0px 25px 20px -20px;
+    z-index: 1;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    width: 250px; /* Adjust this to make the images larger */
+    height: 200px; /* Adjust this to make the images larger and square */
+    transition: 0.5s ease;
+}
+
+.name {
+    font-weight: bold;
+    color: #f5ffff;
+    font-family: sans-serif;
+    margin: 10px 0;
+}
+
+.designation {
+    color: #f5ffff;
+    font-family: sans-serif;
+}
+
+.grid-item:hover {
+    /*opacity: 0.7; */ 
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+    transition: 0.5s ease;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    z-index: 2;
+}
+
+.grid-container:hover .grid-item:not(:hover) {
+    filter: blur(5px); /* Apply blur effect to other images when one is hovered */
+}
+
+footer {
+    background-color: #3a4654; /* Background color for the footer */
+    color: #f5ffff; /* Text color for the footer */
+    text-align: center;
+    padding: 10px;
+}
+
+.circle {
+    display: inline-block;
+    background-color: #f5ffff; /* Background color for the circle */
+    color: #77c5d2; /* Text color for the copyright symbol inside the circle */
+    border-radius: 50%; /* Create a circle */
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.footer-text {
+    display: inline-block;
+    font-family: sans-serif; /* Use sans-serif font for the text */
+    font-size: 14px;
+}
+
+
+

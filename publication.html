@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Layout</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <header>
+        <!-- Header content -->
+        <div class="header-content">
+            <img src="./logo.png" alt="Left Logo" class="left-logo">
+            <h1>Computer Systems Group</h1>
+            <img src="./IIIT_logo.png" alt="Right Logo" class="right-logo">
+        </div>
+
+        <!-- Navbar content -->
+        <nav class="navbar">
+            <a href="./index.html">HOME</a>
+            <a href="./Facultypage/Facultyinfo.html">FACULTY</a>
+            <a href="./students page/studentindex.html">STUDENTS</a>
+            <a href="./project.html">PROJECT</a>
+            <a href="./event.html">EVENTS</a>
+            <a href="./publication.html">PUBLICATIONS</a>
+            <a href="./researchworks.html">RESEARCH WORKS</a>
+            <a href="./coursesoffered.html">COURSES OFFERED</a>
+        </nav>
+    </header>
+
+    <main id="publication-container">
+        <!-- Publications data will be dynamically inserted here -->
+    </main>
+
+    <footer>
+        <div class="circle">&copy;</div>
+        <div class="footer-text">2018 Computer Systems Group (CSG), IIIT-Hyderabad</div>
+    </footer>
+
+    <script>
+        // Fetch publications data from the server
+        fetch('/api/publications')
+            .then(response => response.json())
+            .then(publicationsData => {
+                // Loop through the data and dynamically create HTML elements
+                publicationsData.forEach(publication => {
+                    const roundedDiv = document.createElement('div');
+                    roundedDiv.className = 'rounded-div';
+
+                    const title = document.createElement('h1');
+                    title.textContent = publication.title;
+
+                    // Append the title element to the roundedDiv
+                    roundedDiv.appendChild(title);
+
+                    // Append the roundedDiv to the main container
+                    document.getElementById('publication-container').appendChild(roundedDiv);
+                });
+            })
+            .catch(error => console.error('Error fetching publications:', error));
+    </script>
+</body>
+</html>

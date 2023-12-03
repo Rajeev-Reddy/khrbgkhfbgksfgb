@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Layout</title>
+    <link rel="stylesheet" href="style.css">
+    <!---<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+     crossorigin="anonymous">!--->
+
+
+</head>
+
+<body>
+    <header>
+        <!-- Header content -->
+        <div class="header-content">
+            <img src="./logo.png" alt="Left Logo" class="left-logo">
+            <h1 class="animated-heading">Computer Systems Group</h1>
+            <img src="./IIIT_logo.png" alt="Right Logo" class="right-logo">
+        </div>
+        
+
+        <!-- Navbar content -->
+        <nav class="navbar">
+            <a href="./index.html">HOME</a>
+            <a href="./Facultypage/Facultyinfo.html">FACULTY</a>
+            <a href="./students page/studentindex.html">STUDENTS</a>
+            <a href="./project.html">PROJECT</a>
+            <a href="./event.html">EVENTS</a>
+            <a href="./publication.html">PUBLICATIONS</a>
+            <a href="./researchworks.html">RESEARCH WORKS</a>
+            <a href="./coursesoffered.html">COURSES OFFERED</a>
+           
+           
+
+        </nav>
+    </header>
+    <div class="slideshow-container">
+        <div class="slide fade">
+            <img src="./1.jpeg" alt="Computer Systems Group 1" class="feature-image">
+        </div>
+        <div class="slide fade">
+            <img src="./homepage.jpg" alt="Computer Systems Group 2" class="feature-image">
+        </div>
+        <div class="slide fade">
+            <img src="./public/homepage3.jpeg" alt="Computer Systems Group 2" class="feature-image">
+        </div>
+        <!-- Add more images as needed -->
+
+        <div class="dot-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <!-- Add more dots if you add more slides -->
+        </div>
+        <div class="about-details">
+            <p>
+                The Computer Systems Group (CSG) was set-up in June 2017. Computer Systems Group undertakes research 
+                and development in all fundamental aspects of Computing Systems spanning across hardware and software.
+                This group is actively involved in research and imparting advanced training through workshops, seminars,
+                and semester-long courses in the fields of computer architecture, compilers, computer networks, operating 
+                systems, and other related topics. As a new group, CSG today has about 3 faculty members and about 15 research 
+                students including Ph.D., Masters, and honors students working on research topics that directly contribute and
+                make an impact on the next-generation computing hardware and software.
+            </p>
+        </div>
+        <div class="container">
+            <div class="card left-card">
+                <div class="image-overlay">
+                    <img src="./card.avif" alt="Left Card Image">
+                    <div class="text-overlay left-text">
+                        <ul class="content-list">
+                            <br><br><br>
+                            <li>Computer Architecture</li>
+                            <li>Compilers</li>
+                            <li>Programming Languages</li>
+                            <li>Computer Networks</li>
+                            <li>Parallel and Distributed Computing</li>
+                            <li>Cloud Computing</li>
+                            <li>Systems Security</li>
+                            <li>Internet of Things</li>
+                            <li>Performance analysis</li>
+                            <li>Stochastic systems modeling</li>
+                            <li>AI/ML driven System Design</li>
+                            <!-- Add other list items -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h2 class="animated-text">Research Areas</h2>
+                </div>
+            </div>
+            <div class="card right-card">
+                <div class="image-overlay">
+                    <img src="./card.avif" alt="Right Card Image">
+                    <div class="text-overlay right-text">
+                        <p>
+                            The Computer Systems Group (CSG) conducts research and development in all
+                            fundamental aspects of Computing Systems, including hardware and software. The
+                            group is currently exploring the following research areas.
+                            <ol class="content-list">
+                                <li>Cyber-Physical Systems, Real-Time Embedded Systems, Performance Analysis, Vehicular Edge Computing, Intelligent Transportation. (Dr. Deepak Gangadharan)</li><br>
+                                <li>Stochastic Modeling, Queueing Theory, Game Theory, Pricing, Reinforcement Learning, Bayesian Optimization. (Dr. Tejas Bodas)</li><br>
+                                <li>Compilers, Computer Architecture, Hardware Accelerators, Parallel and Distributed Systems, High Performance Computing for Bioinformatics Applications, Cloud-Fog-Edge Computing (Dr. Suresh Purini)</li>
+                            </ol>
+                        </p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h2 class="animated-text">Mission And Vision</h2>
+                </div>
+            </div>
+        </div>
+        
+        <script src="script.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+</body>
+<footer>
+    <div class="circle">&copy;</div>
+    <div class="footer-text">2018 Computer Systems Group (CSG), IIIT-Hyderabad</div>
+    <div class="social-media">
+        <a href="https://twitter.com/i/flow/login?redirect_after_login=%2Fcsg_iiith" target="_blank" rel="noopener noreferrer">
+            <img src="https://img.icons8.com/fluent/48/000000/twitter.png" alt="Twitter Icon">
+            Follow on Twitter
+        </a>
+    </div>
+</footer>
+
+
+</html>

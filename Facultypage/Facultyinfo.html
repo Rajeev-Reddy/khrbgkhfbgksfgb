@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #808080;
+        }
+
+        .faculty-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .faculty-row {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .faculty-card {
+            z-index: 1;
+            width: 23%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: #23252f;
+            margin-bottom: 25px;
+            margin-right: 25px;
+            height: 400px;
+        }
+
+        .faculty-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .faculty-card img {
+            max-width: 90%;
+            height: 60%;
+            display: block;
+            margin: 0 auto;
+            border-radius: 50%;
+        }
+
+        .faculty-description {
+            margin-top: 10px;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .faculty-link {
+            text-decoration: none;
+            color: #1565c0;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .faculty-link:hover {
+            text-decoration: underline;
+        }
+
+        .faculty-title {
+            font-style: italic;
+            font-family: sans-serif;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .faculty-degree {
+
+            font-family: sans-serif;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .toggle-interest {
+            background-color: #0070c9;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-family: sans-serif;
+        }
+
+        .toggle-interest:hover {
+            background-color: #00568c;
+        }
+
+        .research-interest {
+            z-index: 1000;
+            display: none;
+            position: absolute;
+            top: 40%; /* Adjusted top position */
+            left: 0%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            background-color: #ccc;
+            border: 1px solid #1565c0;
+            color: #000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+
+            transition: opacity 0.3s, transform 0.3s;
+            font-family: sans-serif;
+        }
+
+        .show-interest {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+
+        }
+
+        .research-interest ul {
+            list-style-type: square;
+            /* You can use 'circle' or 'square' as well */
+            padding-left: 20px;
+            color: #000;
+        }
+
+        .research-interest ul li {
+            padding: 5px 0;
+            transition: background-color 0.3s;
+            /* Add hover transition */
+        }
+
+        .research-interest ul li:hover {
+            background-color: #0070c9;
+            /* Change background color on hover */
+        }
+
+        .blur {
+            filter: blur(5px);
+            /* Adjust the blur strength as needed */
+            transition: filter 0.3s ease;
+            /* Transition for smooth effect */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <!-- Header content -->
+        <div class="header-content">
+            <img src="../logo.png" alt="Left Logo" class="left-logo">
+            <h1>Computer Systems Group</h1>
+            <img src="../IIIT_logo.png" alt="Right Logo" class="right-logo">
+        </div>
+
+        <!-- Navbar content -->
+        <nav class="navbar">
+            <a href="../index.html">HOME</a>
+            <a href="./Facultyinfo.html">FACULTY</a>
+            <a href="../students page/studentindex.html">STUDENTS</a>
+            <a href="../project.html">PROJECT</a>
+            <a href="../event.html">EVENTS</a>
+            <a href="../publication.html">PUBLICATIONS</a>
+            <a href="../researchworks.html">RESEARCH WORKS</a>
+            <a href="../coursesoffered.html">COURSES OFFERED</a>
+        </nav>
+    </header>
+    <div class="faculty-container">
+        <!-- Faculty cards will be dynamically added here using JavaScript -->
+    </div>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const facultyContainer = document.querySelector('.faculty-container');
+
+            // Fetch faculty data from the server
+            fetch('/api/faculty')
+                .then(response => response.json())
+                .then(facultyData => {
+                    // Populate faculty cards with data
+                    facultyData.forEach(faculty => {
+                        const facultyCard = document.createElement('div');
+                        facultyCard.classList.add('faculty-card');
+
+                        const img = document.createElement('img');
+                        const imageData = new Uint8Array(faculty.image.data);
+                        const blob = new Blob([imageData], {
+                            type: 'image/jpeg'
+                        });
+                        img.src = URL.createObjectURL(blob);
+                        img.alt = faculty.name;
+
+                        const facultyDescription = document.createElement('div');
+                        facultyDescription.classList.add('faculty-description');
+
+                        const facultyLink = document.createElement('a');
+                        facultyLink.classList.add('faculty-link');
+                        facultyLink.href = '#'; // Add the actual link here
+                        facultyLink.textContent = faculty.name;
+
+                        const title = document.createElement('p');
+                        title.classList.add('faculty-title');
+                        title.textContent = faculty.designation;
+
+                        const toggleButton = document.createElement('button');
+                        toggleButton.classList.add('toggle-interest');
+                        toggleButton.textContent = 'Research Interests';
+
+                        const researchInterest = document.createElement('div');
+                        researchInterest.classList.add('research-interest');
+                        const ul = document.createElement('ul');
+                        faculty.interests.forEach(interest => {
+                            const li = document.createElement('li');
+                            li.textContent = interest;
+                            ul.appendChild(li);
+                        });
+                        researchInterest.appendChild(ul);
+
+                        facultyDescription.appendChild(facultyLink);
+                        facultyDescription.appendChild(title);
+                        //facultyDescription.appendChild(degree);
+                        facultyCard.appendChild(img);
+                        facultyCard.appendChild(facultyDescription);
+                        facultyDescription.appendChild(toggleButton);
+                        facultyDescription.appendChild(researchInterest);
+
+                        facultyContainer.appendChild(facultyCard);
+                    });
+
+                    // Add event listeners after the faculty cards are created
+                    addEventListeners();
+                })
+                .catch(error => console.error(error));
+
+            function addEventListeners() {
+                const toggleButtons = document.querySelectorAll(".toggle-interest");
+                const researchInterests = document.querySelectorAll(".research-interest");
+                const facultyCards = document.querySelectorAll('.faculty-card');
+
+                toggleButtons.forEach((button, index) => {
+                    button.addEventListener("click", () => {
+                        const interest = researchInterests[index];
+
+                        // Close all other open research interests except the current one
+                        researchInterests.forEach((element, i) => {
+                            if (i !== index && element.classList.contains("show-interest")) {
+                                element.classList.remove("show-interest");
+                            }
+                        });
+
+                        // Toggle the current faculty's research interests
+                        interest.classList.toggle("show-interest");
+                    });
+                });
+
+                facultyCards.forEach((card, index) => {
+                    card.addEventListener('mouseenter', () => {
+                        // Blur all other faculty cards when one card is hovered
+                        facultyCards.forEach((otherCard) => {
+                            if (otherCard !== card) {
+                                otherCard.classList.add('blur');
+                            }
+                        });
+                    });
+
+                    card.addEventListener('mouseleave', () => {
+                        // Remove blur from all faculty cards when the mouse leaves any card
+                        facultyCards.forEach((otherCard) => {
+                            otherCard.classList.remove('blur');
+                        });
+                    });
+                });
+            }
+        });
+    </script>
+
+
+    <footer>
+        <div class="circle">&copy;</div>
+        <div class="footer-text">2018 Computer Systems Group (CSG), IIIT-Hyderabad</div>
+    </footer>
+
+
+
+</body>
+
+</html>

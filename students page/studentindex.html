@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../style.css">
+    <title>Students</title>
+</head>
+<body>
+    <header>
+        <!-- Header content -->
+        <div class="header-content">
+            <img src="../logo.png" alt="Left Logo" class="left-logo">
+            <h1>Computer Systems Group</h1>
+            <img src="../IIIT_logo.png" alt="Right Logo" class="right-logo">
+        </div>
+
+        <!-- Navbar content -->
+        <nav class="navbar">
+            <a href="../index.html">HOME</a>
+            <a href="../Facultypage/Facultyinfo.html">FACULTY</a>
+            <a href="./studentindex.html">STUDENTS</a>
+            <a href="../project.html">PROJECT</a>
+            <a href="../event.html">EVENTS</a>
+            <a href="../publication.html">PUBLICATIONS</a>
+            <a href="../researchworks.html">RESEARCH WORKS</a>
+            <a href="../coursesoffered.html">COURSES OFFERED</a>
+        </nav>
+    </header>
+    <div class="grid-container" id="grid-container"></div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<style>
+      body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: left;
+        }
+
+
+ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+
+        li {
+            width: 300px;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Added shadow effect */
+            text-align: center;
+        }
+
+li:hover {
+    transform: translateY(-5px);
+}
+.name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: black;
+
+        }
+
+        .designation {
+            font-size: 14px;
+            color: black;
+        }
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 10px 0;
+    background-color: #3a4654;
+    color: #f5ffff;
+}
+
+.circle {
+    display: inline-block;
+    background-color: #f5ffff;
+    color: #77c5d2;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.footer-text {
+    display: inline-block;
+    font-family: sans-serif;
+    font-size: 14px;
+}
+.statistics {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 30px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .statistics div {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            background-color: #fff;
+            width: 100%;
+        }
+
+
+        .statistics div p {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #666;
+        }
+        h1.student-statistics {
+            font-size: 35px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 40px; /* Adjust the margin top as needed */
+        }
+        .grid-item {
+        margin: 20px; /* Adjust the value as needed */
+    }
+</style>
+<br>
+<br>
+<!-- <h1 style="font-size: 40px; font-weight: bold; text-align: center;">Alumni</h1>
+<ul>
+    <li>
+        <div class="name">John Doe</div>
+        <div class="designation">Web Developer</div>
+    </li>
+    <li>
+        <div class="name">Jane Smith</div>
+        <div class="designation">Graphic Designer</div>
+    </li>
+    <li>
+        <div class="name">Michael Johnson</div>
+        <div class="designation">Software Engineer</div>
+    </li>
+    
+</ul> -->
+<h1 style="font-size: 40px; font-weight: bold; text-align: center;">Alumni</h1>
+<ul id="alumni-list"></ul>
+
+<h1 class="student-statistics">Student Statistics</h1>
+<div class="statistics" id="student-statistics-container"></div>
+
+
+<!-- <script src="script.js"></script> -->
+<!-- ... (existing code) -->
+<!-- ... (existing code) -->
+
+<script>
+    const gridContainer = document.getElementById('grid-container');
+    fetch('/api/students')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(item => {
+                const gridItem = document.createElement('div');
+                gridItem.classList.add('grid-item');
+
+                const img = document.createElement('img');
+
+                // Assuming item.image is a Uint8Array
+                const imageData = new Uint8Array(item.image.data);
+                const blob = new Blob([imageData], {
+                    type: 'image/jpeg'
+                });
+
+                img.src = URL.createObjectURL(blob);
+                img.alt = item.name;
+
+                const name = document.createElement('p');
+                name.classList.add('name');
+                name.textContent = item.name;
+
+                const designation = document.createElement('p');
+                designation.classList.add('designation');
+                
+                // Corrected property name to access degree
+                designation.textContent = item.degree;
+
+                gridItem.appendChild(img);
+                gridItem.appendChild(name);
+                gridItem.appendChild(designation);
+
+                gridContainer.appendChild(gridItem);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+
+        const statisticsContainer = document.getElementById('student-statistics-container');
+
+// Fetch student statistics
+// Change this line to use the correct endpoint
+fetch('/api/studentsStatistics')
+    .then(response => response.json())
+    .then(statisticsData => {
+        // Display PHD Students statistics
+        const phdStatistics = statisticsData.filter(stat => stat.degree === 'PHD')[0];
+        displayStatistics('PHD Students', phdStatistics);
+
+        // Display MS Students statistics
+        const msStatistics = statisticsData.filter(stat => stat.degree === 'MS')[0];
+        displayStatistics('MS Students', msStatistics);
+    })
+    .catch(error => {
+        console.error('Error fetching student statistics:', error);
+    });
+
+    fetch('/api/alumni')
+    .then(response => response.json())
+    .then(alumniData => {
+      const alumniList = document.getElementById('alumni-list');
+
+      // Iterate over Alumni data and create list items
+      alumniData.forEach(alumni => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+          <div class="name">${alumni.Name}</div>
+          <div class="designation">${alumni.designation}</div>
+        `;
+
+        alumniList.appendChild(listItem);
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching alumni data:', error);
+    });
+
+
+// Function to display statistics
+function displayStatistics(degree, statistics) {
+    const statisticsDiv = document.createElement('div');
+    statisticsDiv.classList.add('grid-item');
+
+    const degreeHeading = document.createElement('h2');
+    degreeHeading.style.textAlign = 'left';
+    degreeHeading.textContent = degree;
+
+    const inProgressParagraph = document.createElement('p');
+    inProgressParagraph.textContent = `In Progress: ${statistics.inprogress}`;
+
+    const pastStudentsParagraph = document.createElement('p');
+    pastStudentsParagraph.textContent = `Past Students: ${statistics.graduated}`;
+
+    statisticsDiv.appendChild(degreeHeading);
+    statisticsDiv.appendChild(inProgressParagraph);
+    statisticsDiv.appendChild(pastStudentsParagraph);
+
+    statisticsContainer.appendChild(statisticsDiv);
+}
+</script>
+
+<!-- ... (existing code) -->
+
+
+  
+</body>
+<footer>
+    <div class="circle">&copy;</div>
+    <div class="footer-text">2018 Computer Systems Group (CSG), IIIT-Hyderabad</div>
+</footer>
+
+</html>

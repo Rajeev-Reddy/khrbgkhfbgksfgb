@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Layout</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <img src="./logo.png" alt="Left Logo" class="left-logo">
+            <h1>Computer Systems Group</h1>
+            <img src="./IIIT_logo.png" alt="Right Logo" class="right-logo">
+        </div>
+        <nav class="navbar">
+            <a href="#">HOME</a>
+            <a href="#">FACULTY</a>
+            <a href="#">STUDENTS</a>
+            <a href="#">PROJECT</a>
+            <a href="#">EVENTS</a>
+            <a href="#">PUBLICATIONS</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="left-section">
+            <div class="slideshow-container">
+                <div class="slide fade">
+                    <img src="./homepage.jpg" alt="Computer Systems Group 1" class="feature-image">
+                </div>
+                <!-- Add as many slides as needed -->
+                <!-- ... -->
+
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                <div class="dot-container">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <!-- Add corresponding dots for slides -->
+                    <!-- ... -->
+                </div>
+            </div>
+
+            <div class="about-details">
+                <!-- ... Your existing about-details content ... -->
+            </div>
+        </div>
+
+        <div class="right-section">
+            <div class="yellow-square">
+                <!-- ... Your existing research-areas content ... -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

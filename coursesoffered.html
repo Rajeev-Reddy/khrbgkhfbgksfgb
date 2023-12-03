@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses Offered</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .course-item {
+            width: 100%;
+            margin: 10px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            background-color: #fff;
+            box-sizing: border-box;
+        }
+
+        .course-item:hover {
+            transform: scale(1.03);
+        }
+
+        .course-item h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .course-item p {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-content">
+        <img src="./logo.png" alt="Left Logo" class="left-logo">
+        <h1>Computer Systems Group</h1>
+        <img src="./IIIT_logo.png" alt="Right Logo" class="right-logo">
+    </div>
+    <br>
+    <nav class="navbar">
+        <a href="./index.html">HOME</a>
+        <a href="./Facultypage/Facultyinfo.html">FACULTY</a>
+        <a href="./students page/studentindex.html">STUDENTS</a>
+        <a href="./project.html">PROJECT</a>
+        <a href="./event.html">EVENTS</a>
+        <a href="./publication.html">PUBLICATIONS</a>
+        <a href="./researchworks.html">RESEARCH WORKS</a>
+        <a href="./coursesoffered.html">COURSES OFFERED</a>
+    </nav>
+    <main id="course-container">
+        <!-- Courses data will be dynamically inserted here -->
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async function () {
+            try {
+                // Fetch courses data from the API endpoint
+                const response = await fetch('/api/courses');
+                const coursesData = await response.json();
+
+                // Select the container where you want to display the courses data
+                const courseContainer = document.getElementById('course-container');
+
+                // Iterate through the courses data and create HTML elements to display it
+                coursesData.forEach(course => {
+                    const courseItem = document.createElement('div');
+                    courseItem.classList.add('course-item');
+
+                    const title = document.createElement('h2');
+                    title.textContent = course.name;
+
+                    // Add more elements if there are additional fields in the schema
+
+                    courseItem.appendChild(title);
+
+                    courseContainer.appendChild(courseItem);
+                });
+            } catch (error) {
+                console.error(error);
+                // Handle errors as needed
+            }
+        });
+    </script>
+</body>
+<footer>
+    <div class="circle">&copy;</div>
+    <div class="footer-text">2018 Computer Systems Group (CSG), IIIT-Hyderabad</div>
+</footer>
+</html>
